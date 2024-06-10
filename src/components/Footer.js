@@ -8,7 +8,7 @@ const Footer = () => {
       <div className={styles.container}>
         <ul className={styles.socialLinks}>
           <li>
-            <a href="https://wa.me/+221786017545" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/+221767701221" target="_blank" rel="noopener noreferrer">
               <FaWhatsapp className={styles.socialIcon} />
             </a>
           </li>
