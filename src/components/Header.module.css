@@ -1,0 +1,112 @@
+/* Utilisation d'une police plus moderne */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: linear-gradient(to right, #F9D976, #F39F86);
+  color: #333;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 0.5rem;
+}
+
+.logoText {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.logoSpan {
+  color: #333;
+  transition: transform 0.3s ease-in-out;
+}
+
+.logoText:hover .logoSpan {
+  transform: rotate(10deg);
+}
+
+.nav {
+  display: flex;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem; /* Ajoute un espacement entre les éléments de la liste */
+}
+
+.navItem {
+  margin-right: 0; /* Supprime la marge à droite */
+}
+
+.navLink {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 0.25rem;
+  font-size: 1.2rem; /* Augmentation de la taille de la police pour les liens */
+  padding: 0.5rem 1rem; /* Ajout d'un espacement interne pour les liens */
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #333;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.navLink:hover::before {
+  transform: scaleX(1);
+}
+
+/* Media Queries pour la réactivité */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logoContainer {
+    margin-bottom: 1rem;
+  }
+
+  .nav {
+    width: 100%;
+  }
+
+  .navList {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem; /* Réduit l'espacement entre les éléments de la liste sur les petits écrans */
+  }
+
+  .navItem {
+    width: 100%;
+  }
+
+  .navLink {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 0;
+  }
+}

@@ -1,0 +1,29 @@
+.brand {
+    padding: 4rem 0;
+    background-color: #f8f9fa;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .brandWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .brandLogo {
+    max-width: 150px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease-in-out;
+    filter: grayscale(100%);
+  }
+  
+  .brandLogo:hover {
+    transform: scale(1.1);
+    filter: grayscale(0);
+  }

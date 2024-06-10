@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.formGroup {
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: block;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.inputField,
+.textareaField {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  font-family: 'Poppins', sans-serif;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.inputField:focus,
+.textareaField:focus {
+  outline: none;
+  border-color: #f39f86;
+  box-shadow: 0 0 5px rgba(243, 159, 134, 0.5);
+}
+
+.inputField::placeholder,
+.textareaField::placeholder {
+  color: #999;
+  font-family: 'Poppins', sans-serif;
+}
+
+.submitButton {
+  background-color: #f39f86;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #e0783f;
+}
+
+.errorMessage {
+  color: #dc3545;
+  margin-top: 10px;
+  animation: shake 0.5s;
+  font-size: 1.1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.errorMessage::before {
+  content: "Erreur : ";
+  font-weight: bold;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Media Queries pour la réactivité */
+@media (max-width: 768px) {
+  .container {
+    padding: 30px;
+  }
+
+  .label {
+    font-size: 1rem;
+  }
+
+  .inputField,
+  .textareaField {
+    padding: 12px 15px;
+    font-size: 1rem;
+  }
+
+  .submitButton {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
+
+  .label {
+    font-size: 0.9rem;
+  }
+
+  .inputField,
+  .textareaField {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  .submitButton {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
