@@ -17,7 +17,7 @@ function App() {
         
         <Products />
         <About />
-        <OrderForm />
+  
       </main>
       <Footer />
     </div>

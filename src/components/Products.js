@@ -1,42 +1,90 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Products.module.css';
-
-import product1Image from '../assets/images/product1.png';
-import product2Image from '../assets/images/product2.png';
-import product3Image from '../assets/images/product3.jpeg';
+import OrderForm from './OrderForm';
 
 const Products = () => {
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isCheckoutVisible, setIsCheckoutVisible] = useState(false);
+
+  const products = [
+    {
+      id: 1,
+      image: require('../assets/images/product3_1.jpeg'),
+      name: 'Ñuul Mo Rafet',
+      description: 'Célébrez la beauté naturelle de la peau noire. Un rappel puissant que votre couleur est magnifique, inspirant fierté et confiance.',
+      price: 5000, // prix en centimes
+    },
+    {
+      id: 2,
+      image: require('../assets/images/product2.jpeg'),
+      name: 'Sama Yaay Sama Xarit',
+      description: "Un hommage touchant à la maternité et à l'amitié. Célébrez le lien unique entre une mère et son enfant, source inépuisable d'amour et de soutien.",
+      price: 5000,
+    },
+    {
+      id: 3,
+      image: require('../assets/images/product1.jpeg'),
+      name: 'Dama Rafet',
+      description: "Affirmez votre beauté intérieure et extérieure. Un message puissant pour embrasser votre authenticité et rayonner de confiance en soi.",
+      price: 5000,
+    },
+    {
+      id: 4,
+      image: require('../assets/images/product4.jpeg'),
+      name: 'Dama Am Jom',
+      description: "Incarnez le courage et la détermination. Un rappel inspirant que vous avez la force intérieure pour surmonter tous les défis.",
+      price: 5000,
+    },
+    {
+      id: 5,
+      image: require('../assets/images/product5.jpeg'),
+      name: 'Dama Muus Baax Sawar',
+      description: "Encouragez l'excellence et l'ambition. Un message motivant pour développer vos talents et devenir la meilleure version de vous-même.",
+      price: 5000,
+    },
+  ];
+
+  useEffect(() => {
+    if (selectedProduct) {
+      setIsCheckoutVisible(true);
+    }
+  }, [selectedProduct]);
+
+  const closeCheckout = () => {
+    setIsCheckoutVisible(false);
+    setSelectedProduct(null);
+  };
+
   return (
     <section id="products" className={styles.products}>
       <div className={styles.container}>
         <h2 className={styles.heading}>Nos Produits</h2>
         <div className={styles.productGrid}>
-          <div className={styles.product}>
-            <img
-              src={product1Image}
-              alt="Produit 1"
-              className={styles.productImage}
-            />
-            <p className={styles.productDescription}>Nous vous présentons un t-shirt qui célèbre fièrement la beauté de la peau noire. Notre design 'Dér Bou Nioul Mo Rafeté' (La peau noire est magnifique) est une ode à l'acceptation de soi et à la fierté culturelle</p>
-          </div>
-          <div className={styles.product}>
-            <img
-              src={product2Image}
-              alt="Produit 2"
-              className={styles.productImage}
-            />
-            <p className={styles.productDescription}>Nous vous proposons un t-shirt avec un message puissant d'acceptation de soi et d'authenticité. Notre design 'Boul Meussa Khéssal' (Ne te dépigmente jamais) encourage les enfants à embrasser leur peau naturelle et à s'aimer tels qu'ils sont</p>
-          </div>
-          <div className={styles.product}>
-            <img
-              src={product3Image}
-              alt="Produit 3"
-              className={styles.productImage}
-            />
-            <p className={styles.productDescription}>Nous vous proposons un t-shirt qui est une véritable célébration de la beauté et de la confiance en soi. Notre design 'Dagua Rafeté' (Tu es belle) transmet un message puissant d'acceptation et d'amour de soi.</p>
-          </div>
+          {products.map((product) => (
+            <div key={product.id} className={styles.product}>
+              <div className={styles.productImageContainer}>
+                <img src={product.image} alt={product.name} className={styles.productImage} />
+                <div className={styles.productOverlay}>
+                  <button className={styles.btn} onClick={() => setSelectedProduct(product)}>
+                    Commander
+                  </button>
+                </div>
+              </div>
+              <h3 className={styles.productName}>{product.name}</h3>
+              <p className={styles.productDescription}>{product.description}</p>
+              <p className={styles.productPrice}>{(product.price )} frc</p>
+            </div>
+          ))}
         </div>
       </div>
+      {isCheckoutVisible && (
+        <div className={styles.checkoutOverlay}>
+          <div className={styles.checkoutContainer}>
+            <button className={styles.closeBtn} onClick={closeCheckout}>&times;</button>
+            <OrderForm product={selectedProduct} onClose={closeCheckout} />
+          </div>
+        </div>
+      )}
     </section>
   );
 };
