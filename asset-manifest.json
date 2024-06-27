@@ -1,20 +1,22 @@
 {
   "files": {
-    "main.css": "/fatoubou-ndaw/static/css/main.95f24660.css",
-    "main.js": "/fatoubou-ndaw/static/js/main.44801c47.js",
+    "main.css": "/fatoubou-ndaw/static/css/main.5d7825bf.css",
+    "main.js": "/fatoubou-ndaw/static/js/main.d679ff45.js",
     "static/js/453.db41886f.chunk.js": "/fatoubou-ndaw/static/js/453.db41886f.chunk.js",
-    "static/media/product1.png": "/fatoubou-ndaw/static/media/product1.e19962b2964c94a51b3f.png",
-    "static/media/product2.png": "/fatoubou-ndaw/static/media/product2.304a5911809d51560c25.png",
-    "static/media/about.jpeg": "/fatoubou-ndaw/static/media/about.d6d609c3dbadad618a9e.jpeg",
-    "static/media/product3.jpeg": "/fatoubou-ndaw/static/media/product3.240f0eb6e18a41b65189.jpeg",
+    "static/media/product2.jpeg": "/fatoubou-ndaw/static/media/product2.4b099556adcec0d1b260.jpeg",
+    "static/media/product4.jpeg": "/fatoubou-ndaw/static/media/product4.f79422733b3a62562055.jpeg",
+    "static/media/product1.jpeg": "/fatoubou-ndaw/static/media/product1.ef7231425559db5e679d.jpeg",
+    "static/media/product5.jpeg": "/fatoubou-ndaw/static/media/product5.2a71229025c34fac80a1.jpeg",
+    "static/media/product3_1.jpeg": "/fatoubou-ndaw/static/media/product3_1.ed5d61761c2bee0fe469.jpeg",
+    "static/media/about.jpeg": "/fatoubou-ndaw/static/media/about.5f2a6a11255cdf060e05.jpeg",
     "static/media/logo.png": "/fatoubou-ndaw/static/media/logo.1515e02c1dca7d63c63e.png",
     "index.html": "/fatoubou-ndaw/index.html",
-    "main.95f24660.css.map": "/fatoubou-ndaw/static/css/main.95f24660.css.map",
-    "main.44801c47.js.map": "/fatoubou-ndaw/static/js/main.44801c47.js.map",
+    "main.5d7825bf.css.map": "/fatoubou-ndaw/static/css/main.5d7825bf.css.map",
+    "main.d679ff45.js.map": "/fatoubou-ndaw/static/js/main.d679ff45.js.map",
     "453.db41886f.chunk.js.map": "/fatoubou-ndaw/static/js/453.db41886f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.95f24660.css",
-    "static/js/main.44801c47.js"
+    "static/css/main.5d7825bf.css",
+    "static/js/main.d679ff45.js"
   ]
 }
