@@ -35,7 +35,7 @@ const AppContent = () => {
 const App = () => {
   return (
     <CartProvider>
-      <Router basename="/fatoubou-ndaw">
+      <Router>
         <AppContent />
       </Router>
     </CartProvider>
