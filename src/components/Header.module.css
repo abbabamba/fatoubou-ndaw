@@ -31,7 +31,6 @@
   height: 50px;
   margin-right: 0.5rem;
   transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
-  filter: grayscale(100%) brightness(0.8);
 }
 
 .header:hover .logo {
@@ -43,7 +42,7 @@
   font-family: 'Poppins', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
-  
+  color: #333;
   transition: color 0.3s ease-in-out;
 }
 
