@@ -2,7 +2,7 @@
 
 .products {
   padding: 6rem 0;
-  background: linear-gradient(135deg, #F9D976, #F39F86);
+  background-color: #f9f9f9;
 }
 
 .container {
@@ -13,7 +13,7 @@
 
 .heading {
   font-family: 'Poppins', sans-serif;
-  font-size: 3.5rem;
+  font-size: 3rem;
   text-align: center;
   margin-bottom: 3rem;
   color: #333;
@@ -45,6 +45,7 @@
   border-radius: 1rem;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .product:hover {
@@ -74,7 +75,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,7 +109,7 @@
   font-family: 'Poppins', sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
-  color: #F39F86;
+  color: #ae86f4;
   text-align: center;
   margin-bottom: 1.5rem;
 }
@@ -116,7 +117,7 @@
 .btn {
   display: inline-block;
   padding: 0.8rem 2rem;
-  background-color: #333;
+  background-color: #ae86f4;
   color: #fff;
   font-family: 'Poppins', sans-serif;
   font-size: 1rem;
@@ -129,11 +130,11 @@
 }
 
 .btn:hover {
-  background-color: #F39F86;
-  color: #333;
+  background-color: #f59cb1;
+  color: #fff;
 }
 
-.checkoutOverlay {
+.productDetail {
   position: fixed;
   top: 0;
   left: 0;
@@ -141,36 +142,36 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   z-index: 1000;
+  padding: 2rem;
+  box-sizing: border-box;
+  transition: opacity 0.3s ease-in-out;
 }
 
-.checkoutContainer {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 1rem;
-  position: relative;
-  max-width: 500px;
-  width: 90%;
+.productDetail img {
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 1rem;
 }
 
 .closeBtn {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  font-size: 1.5rem;
+  font-size: 2rem;
   background: none;
   border: none;
   cursor: pointer;
-  color: #333;
+  color: #fff;
 }
 
 @media (max-width: 768px) {
   .heading {
     font-size: 2.5rem;
   }
-  
   .productGrid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
@@ -181,15 +182,12 @@
   .heading {
     font-size: 2rem;
   }
-  
   .productGrid {
     grid-template-columns: 1fr;
   }
-  
   .productName {
     font-size: 1.2rem;
   }
-  
   .productDescription {
     font-size: 0.9rem;
   }

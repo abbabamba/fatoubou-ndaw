@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 .home {
-  background: linear-gradient(135deg, #F9D976, #F39F86);
+  background: linear-gradient(135deg, #FF69B4, #8A2BE2);
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -9,6 +9,8 @@
   color: #333;
   position: relative;
   overflow: hidden;
+  padding: 1rem; /* Padding général */
+  box-sizing: border-box; /* Assurez-vous que le padding est inclus dans la largeur totale */
 }
 
 .home::before {
@@ -33,13 +35,14 @@
 
 .container {
   max-width: 800px;
-  padding: 3rem;
+  padding: 2rem; /* Ajustement du padding */
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 1rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  box-sizing: border-box; /* Assurez-vous que le padding est inclus dans la largeur totale */
 }
 
 .container.visible {
@@ -51,12 +54,14 @@
   font-family: 'Poppins', sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem; /* Ajustement de la marge */
   line-height: 1.4;
+  color: #8A2BE2;
+  text-align: center; /* Centrage du texte */
 }
 
 .highlight {
-  color: #F39F86;
+  color: #FF69B4;
   position: relative;
   display: inline-block;
 }
@@ -68,7 +73,7 @@
   left: 0;
   width: 100%;
   height: 30%;
-  background-color: rgba(243, 159, 134, 0.3);
+  background-color: rgba(255, 105, 180, 0.3);
   z-index: -1;
   transition: height 0.3s ease-in-out;
 }
@@ -77,11 +82,20 @@
   height: 100%;
 }
 
+.subheading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 1.5rem; /* Ajustement de la marge */
+  text-align: center; /* Centrage du texte */
+}
+
 .btnContainer {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem; /* Ajustement de la marge */
+  flex-direction: column; /* Aligner les boutons verticalement */
 }
 
 .btn {
@@ -95,6 +109,9 @@
   transition: all 0.3s ease-in-out;
   position: relative;
   overflow: hidden;
+  text-align: center; /* Centrage du texte */
+  width: 100%; /* Assurez-vous que les boutons prennent toute la largeur */
+  box-sizing: border-box; /* Assurez-vous que le padding est inclus dans la largeur totale */
 }
 
 .btn::before {
@@ -116,13 +133,13 @@
 }
 
 .btnPrimary {
-  background-color: #333;
+  background-color: #8A2BE2;
   color: #fff;
 }
 
 .btnSecondary {
-  background-color: #F39F86;
-  color: #333;
+  background-color: #FF69B4;
+  color: #fff;
 }
 
 .scrollIndicator {
@@ -141,7 +158,7 @@
 .mouse {
   width: 30px;
   height: 50px;
-  border: 2px solid #333;
+  border: 2px solid #fff;
   border-radius: 15px;
   display: flex;
   justify-content: center;
@@ -151,7 +168,7 @@
 .mouseWheel {
   width: 4px;
   height: 8px;
-  background-color: #333;
+  background-color: #fff;
   border-radius: 2px;
   animation: scrollWheel 1.5s infinite;
 }
@@ -165,23 +182,24 @@
   .heading {
     font-size: 2rem;
   }
-
-  .btnContainer {
-    flex-direction: column;
-  }
-
-  .btn {
-    width: 100%;
-    text-align: center;
+  .container {
+    max-width: 90%;
+    padding: 2rem;
   }
 }
 
 @media (max-width: 480px) {
   .container {
-    padding: 2rem;
+    padding: 1.5rem;
   }
-
   .heading {
     font-size: 1.5rem;
+  }
+  .subheading {
+    font-size: 1rem;
+  }
+  .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
   }
 }

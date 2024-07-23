@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../contexts/CartContext';
 import styles from './Products.module.css';
-import OrderForm from './OrderForm';
+import Swal from 'sweetalert2';
 
 const Products = () => {
+  const { addToCart } = useContext(CartContext);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [isCheckoutVisible, setIsCheckoutVisible] = useState(false);
+  const navigate = useNavigate();
 
   const products = [
     {
@@ -44,15 +47,32 @@ const Products = () => {
     },
   ];
 
-  useEffect(() => {
-    if (selectedProduct) {
-      setIsCheckoutVisible(true);
-    }
-  }, [selectedProduct]);
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    Swal.fire({
+      title: 'Produit ajouté !',
+      text: `${product.name} a été ajouté à votre panier.`,
+      icon: 'success',
+      showCancelButton: true,
+      confirmButtonText: 'Voir le panier',
+      cancelButtonText: 'Continuer les achats',
+      customClass: {
+        container: styles.swalContainer,
+        popup: styles.swalPopup,
+        title: styles.swalTitle,
+        content: styles.swalContent,
+        confirmButton: styles.swalConfirmButton,
+        cancelButton: styles.swalCancelButton
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/cart'); // Redirection vers la page du panier
+      }
+    });
+  };
 
-  const closeCheckout = () => {
-    setIsCheckoutVisible(false);
-    setSelectedProduct(null);
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
   };
 
   return (
@@ -61,28 +81,33 @@ const Products = () => {
         <h2 className={styles.heading}>Nos Produits</h2>
         <div className={styles.productGrid}>
           {products.map((product) => (
-            <div key={product.id} className={styles.product}>
+            <div key={product.id} className={styles.product} onClick={() => handleProductClick(product)}>
               <div className={styles.productImageContainer}>
                 <img src={product.image} alt={product.name} className={styles.productImage} />
                 <div className={styles.productOverlay}>
-                  <button className={styles.btn} onClick={() => setSelectedProduct(product)}>
-                    Commander
+                  <button className={styles.btn} onClick={(e) => {
+                    e.stopPropagation();
+                    handleAddToCart(product);
+                  }}>
+                    Ajouter au panier
                   </button>
                 </div>
               </div>
               <h3 className={styles.productName}>{product.name}</h3>
               <p className={styles.productDescription}>{product.description}</p>
-              <p className={styles.productPrice}>{(product.price )} frc</p>
+              <p className={styles.productPrice}>{product.price} frc</p>
             </div>
           ))}
         </div>
       </div>
-      {isCheckoutVisible && (
-        <div className={styles.checkoutOverlay}>
-          <div className={styles.checkoutContainer}>
-            <button className={styles.closeBtn} onClick={closeCheckout}>&times;</button>
-            <OrderForm product={selectedProduct} onClose={closeCheckout} />
-          </div>
+      {selectedProduct && (
+        <div className={styles.productDetail}>
+          <button className={styles.closeBtn} onClick={() => setSelectedProduct(null)}>✖</button>
+          <h2>{selectedProduct.name}</h2>
+          <img src={selectedProduct.image} alt={selectedProduct.name} />
+          <p>{selectedProduct.description}</p>
+          <p>Prix: {selectedProduct.price} frc</p>
+          <button className={styles.btn} onClick={() => handleAddToCart(selectedProduct)}>Ajouter au panier</button>
         </div>
       )}
     </section>

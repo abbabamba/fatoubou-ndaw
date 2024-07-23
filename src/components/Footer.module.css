@@ -2,8 +2,8 @@
 
 .footer {
   padding: 6rem 0 4rem;
-  background: linear-gradient(to right, #2c3e50, #34495e);
-  color: #fff;
+  background-color: #f9f9f9;
+  color: #333;
   position: relative;
   overflow: hidden;
   opacity: 0;
@@ -40,13 +40,14 @@
 
 .socialIcon {
   font-size: 2.5rem;
-  color: #fff;
+  color: #8A2BE2;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .socialIcon.active {
   transform: scale(1.2) rotate(360deg);
-  color: #f0c040;
+  color: #FF69B4;
 }
 
 .socialName {
@@ -59,6 +60,7 @@
   font-family: 'Poppins', sans-serif;
   font-size: 0.8rem;
   white-space: nowrap;
+  color: #333;
 }
 
 .socialItem:hover .socialName {
@@ -75,7 +77,7 @@
 }
 
 .heart {
-  color: #f0c040;
+  color: #FF69B4;
   display: inline-block;
   animation: pulse 1.5s infinite;
 }
@@ -107,30 +109,42 @@
 }
 
 .wave1 {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 88.7'%3E%3Cpath d='M800 56.9c-155.5 0-204.9-50-405.5-49.9-200 0-250 49.9-394.5 49.9v31.8h800v-.2-31.6z' fill='%23f0c040'/%3E%3C/svg%3E");
-  animation: wave 7s linear infinite;
+  background-color: #FF69B4;
+  animation: wave1 7s linear infinite;
   z-index: 1;
   opacity: 0.7;
 }
 
 .wave2 {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 88.7'%3E%3Cpath d='M800 56.9c-155.5 0-204.9-50-405.5-49.9-200 0-250 49.9-394.5 49.9v31.8h800v-.2-31.6z' fill='%23f39c12'/%3E%3C/svg%3E");
-  animation: wave 9s linear infinite;
+  background-color: #fff;
+  animation: wave2 9s linear infinite;
   z-index: 2;
   opacity: 0.5;
 }
 
 .wave3 {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 88.7'%3E%3Cpath d='M800 56.9c-155.5 0-204.9-50-405.5-49.9-200 0-250 49.9-394.5 49.9v31.8h800v-.2-31.6z' fill='%23e67e22'/%3E%3C/svg%3E");
-  animation: wave 5s linear infinite;
+  background-color: #8A2BE2;
+  animation: wave3 5s linear infinite;
   z-index: 3;
   opacity: 0.3;
 }
 
-@keyframes wave {
-  0% { transform: translateX(0) translateZ(0) scaleY(1); }
-  50% { transform: translateX(-25%) translateZ(0) scaleY(0.55); }
-  100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
+@keyframes wave1 {
+  0% { transform: translateX(0) scaleY(1); }
+  50% { transform: translateX(-25%) scaleY(0.55); }
+  100% { transform: translateX(-50%) scaleY(1); }
+}
+
+@keyframes wave2 {
+  0% { transform: translateX(0) scaleY(1); }
+  50% { transform: translateX(-30%) scaleY(0.6); }
+  100% { transform: translateX(-60%) scaleY(1); }
+}
+
+@keyframes wave3 {
+  0% { transform: translateX(0) scaleY(1); }
+  50% { transform: translateX(-20%) scaleY(0.7); }
+  100% { transform: translateX(-40%) scaleY(1); }
 }
 
 @media (max-width: 768px) {

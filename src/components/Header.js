@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { CartContext } from '../contexts/CartContext';
 import styles from './Header.module.css';
 import logoSvg from '../assets/images/logo.png';
 
 const Header = () => {
+  const { cart } = useContext(CartContext);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,12 +20,28 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const hash = location.hash.substring(1);
+    if (hash) {
+      scrollToSection(hash);
+    }
+  }, [location]);
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(sectionId);
       setIsMenuOpen(false);
+    }
+  };
+
+  const handleNavigation = (e, sectionId) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate(`/#${sectionId}`);
+    } else {
+      scrollToSection(sectionId);
     }
   };
 
@@ -40,12 +61,18 @@ const Header = () => {
         <ul className={styles.navList}>
           <li className={styles.navItem}>
             <a
+              href="#home"
+              className={`${styles.navLink} ${activeSection === 'home' ? styles.active : ''}`}
+              onClick={(e) => handleNavigation(e, 'home')}
+            >
+              Accueil
+            </a>
+          </li>
+          <li className={styles.navItem}>
+            <a
               href="#products"
               className={`${styles.navLink} ${activeSection === 'products' ? styles.active : ''}`}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('products');
-              }}
+              onClick={(e) => handleNavigation(e, 'products')}
             >
               Produits
             </a>
@@ -53,30 +80,20 @@ const Header = () => {
           <li className={styles.navItem}>
             <a
               href="#about"
-              className={`${styles.navLink} ${activeSection === 'services' ? styles.active : ''}`}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('about');
-              }}
+              className={`${styles.navLink} ${activeSection === 'about' ? styles.active : ''}`}
+              onClick={(e) => handleNavigation(e, 'about')}
             >
               À propos
             </a>
           </li>
           <li className={styles.navItem}>
-            <a
-              href="#footer"
-              className={`${styles.navLink} ${activeSection === 'contact' ? styles.active : ''}`}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('footer');
-              }}
-            >
-              Contact
-            </a>
+            <Link to="/cart" className={styles.navLink}>
+              Panier ({cart.length})
+            </Link>
           </li>
         </ul>
       </nav>
-      <div 
+      <div
         className={`${styles.mobileMenuToggle} ${isMenuOpen ? styles.open : ''}`}
         onClick={toggleMenu}
       >
