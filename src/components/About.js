@@ -41,7 +41,7 @@ const About = () => {
               alt="Fondatrice de Fatou Bou Ndaw"
               className={styles.image}
             />
-            <div className={styles.imageCaption}>Mame Diara Bousso Ndiaye, Fondatrice de Fatou Bou Ndaw</div>
+            <div className={styles.imageCaption}>Mame Diarra Bousso Ba, <br></br>  Fondatrice de Fatou Bou Ndaw</div>
           </div>
           <div className={styles.textContent}>
             <p className={styles.story}>

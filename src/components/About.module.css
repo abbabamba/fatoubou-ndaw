@@ -60,8 +60,6 @@
   text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
   position: relative;
   display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .heading::after {
@@ -313,4 +311,21 @@
   .messageGrid {
     grid-template-columns: 1fr;
   }
+  .imageCaption {
+    position: absolute;
+    bottom: -10px; /* Adjust bottom spacing for mobile */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.3rem 0.5rem; /* Reduce padding for mobile */
+    border-radius: 15px; /* Adjust border radius for mobile */
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem; /* Reduce font size for mobile */
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center the text */
+    width: calc(100% - 20px); /* Ensure it fits within the container */
+    white-space: normal; /* Allow text wrapping */
+  }
 }
+

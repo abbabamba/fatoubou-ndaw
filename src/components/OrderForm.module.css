@@ -9,8 +9,8 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  padding: 1rem; /* Ajout de padding pour éviter que le contenu touche les bords */
-  box-sizing: border-box; /* Assurez-vous que le padding est inclus dans la largeur totale */
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .formContainer {
@@ -19,11 +19,11 @@
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   max-width: 600px;
-  width: 100%; /* Assurez-vous que le conteneur prend toute la largeur disponible */
+  width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  box-sizing: border-box; /* Assurez-vous que le padding est inclus dans la largeur totale */
+  box-sizing: border-box;
 }
 
 .closeButton {
@@ -88,7 +88,8 @@
 }
 
 .inputField,
-.textareaField {
+.textareaField,
+.selectField {
   width: 100%;
   padding: 0.8rem;
   border: 1px solid #ddd;
@@ -98,13 +99,20 @@
 }
 
 .inputField:focus,
-.textareaField:focus {
+.textareaField:focus,
+.selectField:focus {
   outline: none;
   border-color: #F39F86;
 }
 
 .textareaField {
   resize: vertical;
+}
+
+.selectField {
+  appearance: none;
+  background: url('data:image/svg+xml;base64,...') no-repeat right 10px center; /* icône de flèche pour le select */
+  background-size: 12px;
 }
 
 .submitButton {
@@ -121,6 +129,11 @@
 
 .submitButton:hover {
   background-color: #F9D976;
+}
+
+.submitButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 .errorMessage {
@@ -156,6 +169,7 @@
 
   .inputField,
   .textareaField,
+  .selectField,
   .submitButton {
     font-size: 0.9rem;
   }
@@ -163,11 +177,11 @@
   .cartItem {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem; /* Espace entre les éléments */
+    gap: 0.5rem;
   }
 
   .cartItem > * {
-    width: 100%; /* Assurez-vous que les éléments prennent toute la largeur disponible */
+    width: 100%;
   }
 
   .cartTotal {
@@ -179,3 +193,4 @@
     font-size: 1.2rem;
   }
 }
+
