@@ -15,7 +15,6 @@ const OrderForm = ({ onClose, onOrderSuccess }) => {
     paymentMethod: ''
   });
   const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,36 +36,32 @@ const OrderForm = ({ onClose, onOrderSuccess }) => {
       Total : ${getCartTotal()} frc
       ${message ? `Message : ${message}` : ''}
     `;
-    
-    setIsLoading(true);
-
+  
+    Swal.fire({
+      title: 'Commande reçue !',
+      text: 'Nous traitons votre commande. Vous recevrez bientôt une confirmation par email.',
+      icon: 'success',
+      confirmButtonText: 'Fermer',
+      confirmButtonColor: '#F39F86',
+    });
+  
+    setFormData({ nom: '', adresse: '', telephone: '', message: '', paymentMethod: '' });
+    setError('');
+    onClose();
+    onOrderSuccess();
+  
     try {
       const response = await fetch('https://codingmailer.onrender.com/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ to, subject, message: emailMessage }),
       });
-
+  
       if (!response.ok) {
-        throw new Error('Erreur lors de l\'envoi de la commande');
+        console.error('Erreur lors de l\'envoi de la commande');
       }
-
-      Swal.fire({
-        title: 'Commande reçue !',
-        text: 'Nous traitons votre commande. Vous recevrez bientôt une confirmation par email.',
-        icon: 'success',
-        confirmButtonText: 'Fermer',
-        confirmButtonColor: '#F39F86',
-      });
-
-      setFormData({ nom: '', adresse: '', telephone: '', message: '', paymentMethod: '' });
-      setError('');
-      onClose();
-      onOrderSuccess();
     } catch (error) {
-      setError('Erreur lors de l\'envoi de la commande. Veuillez réessayer.');
-    } finally {
-      setIsLoading(false);
+      console.error('Erreur lors de la requête :', error);
     }
   };
 
@@ -136,17 +131,16 @@ const OrderForm = ({ onClose, onOrderSuccess }) => {
               onChange={handleChange}
               rows="3"
               placeholder="Votre message (optionnel)"
-              className={styles.textareaField}
+              className={styles.inputField}
             />
           </div>
           <div className={styles.formGroup}>
-            <select
-              name="paymentMethod"
-              value={formData.paymentMethod}
-              onChange={handleChange}
-              required
-              className={styles.selectField}
-            >
+          <select
+  name="paymentMethod"
+  value={formData.paymentMethod}
+  onChange={handleChange}
+  required
+  className={`${styles.inputField} ${styles.selectField}`}>
               <option value="" disabled>Choisissez un mode de paiement</option>
               <option value="Wave">Wave</option>
               <option value="Orange Money">Orange Money</option>
@@ -154,10 +148,10 @@ const OrderForm = ({ onClose, onOrderSuccess }) => {
               <option value="Carte bancaire">Carte bancaire</option>
             </select>
           </div>
-          {error && <div className={styles.errorMessage}>{error}</div>}
+          {error && <div className={styles.error}>{error}</div>}
           <div className={styles.formGroup}>
-            <button type="submit" className={styles.submitButton} disabled={isLoading}>
-              {isLoading ? 'Envoi en cours...' : 'Envoyer la commande'}
+            <button type="submit" className={styles.submitButton}>
+              Envoyer la commande
             </button>
           </div>
         </form>
