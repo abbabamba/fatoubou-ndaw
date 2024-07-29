@@ -19,7 +19,7 @@ const Cart = () => {
     setShowOrderForm(false);
     clearCart();
     Swal.fire({
-      title: 'Commande envoyée!',
+      title: 'Commande envoyée !',
       text: 'Nous vous contacterons bientôt pour confirmer votre commande.',
       icon: 'success',
       confirmButtonText: 'Fermer',

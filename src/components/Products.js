@@ -27,7 +27,7 @@ const Products = () => {
     {
       id: 3,
       image: require('../assets/images/product1.jpeg'),
-      name: 'Dama Rafet',
+      name: 'Dama Taaru',
       description: "Affirmez votre beauté intérieure et extérieure. Un message puissant pour embrasser votre authenticité et rayonner de confiance en soi.",
       price: 5000,
     },
