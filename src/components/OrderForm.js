@@ -24,19 +24,44 @@ const OrderForm = ({ onClose, onOrderSuccess }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const { nom, adresse, telephone, message, paymentMethod } = formData;
-    const to = "abakarae313@gmail.com";
-    const subject = "Nouvelle commande";
+    const to = "babacarbamba11@gmail.com";
+    const subject = "Nouvelle commande - Fatou Bou Ndaw";
+    
+    // Fonction pour formater le prix
+    const formatPrice = (price) => {
+      return new Intl.NumberFormat('fr-SN', { style: 'currency', currency: 'XOF' }).format(price);
+    };
+
+    // Générer un numéro de commande unique
+    const orderNumber = `FBN-${Date.now().toString().slice(-6)}`;
+
     const emailMessage = `
-      Nom : ${nom}
-      Adresse : ${adresse}
-      Téléphone : ${telephone}
-      Mode de paiement : ${paymentMethod}
-      Commande :
-      ${cart.map(item => `${item.name} x ${item.quantity} - ${item.price * item.quantity} frc`).join('\n')}
-      Total : ${getCartTotal()} frc
-      ${message ? `Message : ${message}` : ''}
+NOUVELLE COMMANDE - FATOU BOU NDAW
+
+Numéro de commande: ${orderNumber}
+
+DÉTAILS DU CLIENT
+-----------------
+Nom: ${nom}
+Adresse: ${adresse}
+Téléphone: ${telephone}
+Mode de paiement: ${paymentMethod}
+
+DÉTAILS DE LA COMMANDE
+----------------------
+${cart.map(item => `${item.name}
+  Quantité: ${item.quantity}
+  Prix unitaire: ${formatPrice(item.price)}
+  Total: ${formatPrice(item.price * item.quantity)}
+`).join('\n')}
+
+TOTAL DE LA COMMANDE: ${formatPrice(getCartTotal())}
+
+${message ? `MESSAGE DU CLIENT:\n${message}\n` : ''}
+
+Merci pour votre commande chez Fatou Bou Ndaw. Nous la traiterons dans les plus brefs délais.
     `;
-  
+
     Swal.fire({
       title: 'Commande reçue !',
       text: 'Nous traitons votre commande. Vous recevrez bientôt une confirmation par email.',
@@ -44,19 +69,19 @@ const OrderForm = ({ onClose, onOrderSuccess }) => {
       confirmButtonText: 'Fermer',
       confirmButtonColor: '#F39F86',
     });
-  
+
     setFormData({ nom: '', adresse: '', telephone: '', message: '', paymentMethod: '' });
     setError('');
     onClose();
     onOrderSuccess();
-  
+
     try {
       const response = await fetch('https://codingmailer.onrender.com/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ to, subject, message: emailMessage }),
       });
-  
+
       if (!response.ok) {
         console.error('Erreur lors de l\'envoi de la commande');
       }
@@ -135,12 +160,12 @@ const OrderForm = ({ onClose, onOrderSuccess }) => {
             />
           </div>
           <div className={styles.formGroup}>
-          <select
-  name="paymentMethod"
-  value={formData.paymentMethod}
-  onChange={handleChange}
-  required
-  className={`${styles.inputField} ${styles.selectField}`}>
+            <select
+              name="paymentMethod"
+              value={formData.paymentMethod}
+              onChange={handleChange}
+              required
+              className={`${styles.inputField} ${styles.selectField}`}>
               <option value="" disabled>Choisissez un mode de paiement</option>
               <option value="Wave">Wave</option>
               <option value="Orange Money">Orange Money</option>
