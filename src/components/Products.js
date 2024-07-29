@@ -95,7 +95,7 @@ const Products = () => {
               </div>
               <h3 className={styles.productName}>{product.name}</h3>
               <p className={styles.productDescription}>{product.description}</p>
-              <p className={styles.productPrice}>{product.price} frc</p>
+              <p className={styles.productPrice}>{product.price} FCFA</p>
             </div>
           ))}
         </div>
@@ -106,7 +106,7 @@ const Products = () => {
           <h2>{selectedProduct.name}</h2>
           <img src={selectedProduct.image} alt={selectedProduct.name} />
           <p>{selectedProduct.description}</p>
-          <p>Prix: {selectedProduct.price} frc</p>
+          <p>Prix: {selectedProduct.price} FCFA</p>
           <button className={styles.btn} onClick={() => handleAddToCart(selectedProduct)}>Ajouter au panier</button>
         </div>
       )}

@@ -68,7 +68,7 @@ const Cart = () => {
                       <img src={item.image} alt={item.name} className={styles.itemImage} />
                       <div className={styles.itemInfo}>
                         <h3 className={styles.itemName}>{item.name}</h3>
-                        <p className={styles.itemPrice}>{item.price} frc</p>
+                        <p className={styles.itemPrice}>{item.price} FCFA</p>
                         <div className={styles.itemActions}>
                           <button
                             onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
@@ -93,7 +93,7 @@ const Cart = () => {
                 </div>
                 <div className={styles.cartSummary}>
                   <div className={styles.totalPrice}>
-                    Total: <span>{getCartTotal()} frc</span>
+                    Total: <span>{getCartTotal()} FCFA</span>
                   </div>
                   <button onClick={handleOrder} className={styles.orderButton}>
                     Passer la commande
