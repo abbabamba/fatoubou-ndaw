@@ -1,5 +1,85 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
+
+.formContainer {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: 2rem auto;
+  position: relative;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputField {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease-in-out;
+}
+
+.inputField:focus {
+  border-color: #ff69b4;
+  outline: none;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.submitButton, .closeButton {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.submitButton {
+  background: linear-gradient(135deg, #ff69b4, #8a2be2);
+  color: #fff;
+}
+
+.submitButton:hover {
+  background: linear-gradient(135deg, #8a2be2, #ff69b4);
+}
+
+.closeButton {
+  background: #ccc;
+  color: #333;
+}
+
+.closeButton:hover {
+  background: #aaa;
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    padding: 1.5rem;
+  }
+
+  .inputField {
+    font-size: 0.9rem;
+  }
+
+  .submitButton, .closeButton {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
 .about {
   padding: 8rem 0;
   background: linear-gradient(135deg, #ff69b4, #8a2be2);

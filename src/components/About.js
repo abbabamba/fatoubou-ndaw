@@ -1,10 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import styles from './About.module.css';
 import aboutImage from '../assets/images/about.jpeg';
 
+const MySwal = withReactContent(Swal);
+
 const About = () => {
   const [activeMessage, setActiveMessage] = useState(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({
+    prenom: '',
+    nom: '',
+    telephone: '',
+    message: ''
+  });
 
   const messages = [
     { wolof: "Dagua raféte", french: "Tu es belle" },
@@ -14,24 +24,70 @@ const About = () => {
     { wolof: "Gueumal sa bop", french: "Crois en toi" }
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const element = document.getElementById('about');
-      if (element) {
-        const position = element.getBoundingClientRect();
-        if (position.top < window.innerHeight && position.bottom >= 0) {
-          setIsVisible(true);
-        }
-      }
-    };
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({ ...prevState, [name]: value }));
+  };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const { prenom, nom, telephone, message } = formData;
+    const to = "fatouboundaw2024@gmail.com";
+    const subject = "Nouvelle inscription à la mission - Fatou Bou Ndaw";
+    const emailMessage = `
+  Nouvelle inscription à la mission - Fatou Bou Ndaw
+  
+  Prénom: ${prenom}
+  Nom: ${nom}
+  Téléphone: ${telephone}
+  
+  Message: ${message ? message : 'Aucun message'}
+    `;
+  
+    // Afficher l'alerte de succès immédiatement
+    MySwal.fire({
+      title: 'Inscription réussie !',
+      text: 'Merci de nous rejoindre.',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
+  
+    // Réinitialiser le formulaire et fermer la fenêtre
+    setShowForm(false);
+    setFormData({ prenom: '', nom: '', telephone: '', message: '' });
+  
+    // Ensuite, essayer d'envoyer l'email
+    try {
+      const response = await fetch('https://codingmailer.onrender.com/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ to, subject, message: emailMessage }),
+      });
+  
+      if (!response.ok) {
+        // Afficher une alerte d'erreur si l'API échoue
+        MySwal.fire({
+          title: 'Erreur',
+          text: "Erreur lors de l'envoi du formulaire.",
+          icon: 'error',
+          confirmButtonText: 'Réessayer'
+        });
+      }
+    } catch (error) {
+      console.error('Erreur lors de la requête :', error);
+      // Afficher une alerte d'erreur si la requête échoue
+      MySwal.fire({
+        title: 'Erreur',
+        text: "Une erreur est survenue. Veuillez réessayer.",
+        icon: 'error',
+        confirmButtonText: 'Réessayer'
+      });
+    }
+  };
+  
 
   return (
-    <section id="about" className={`${styles.about} ${isVisible ? styles.visible : ''}`}>
+    <section id="about" className={`${styles.about} ${styles.visible}`}>
       <div className={styles.container}>
         <h2 className={styles.heading}>L'histoire de Fatou Bou Ndaw</h2>
         <div className={styles.content}>
@@ -41,7 +97,7 @@ const About = () => {
               alt="Fondatrice de Fatou Bou Ndaw"
               className={styles.image}
             />
-            <div className={styles.imageCaption}>Mame Diarra Bousso Ba, <br></br> Fondatrice de Fatou Bou Ndaw</div>
+            <div className={styles.imageCaption}>Mame Diarra Bousso Ba, <br /> Fondatrice de Fatou Bou Ndaw</div>
           </div>
           <div className={styles.textContent}>
             <p className={styles.story}>
@@ -61,9 +117,57 @@ const About = () => {
                 </div>
               ))}
             </div>
-            <a href="#footer" className={styles.btn}>Rejoignez notre mission</a>
+            <button onClick={() => setShowForm(true)} className={styles.btn}>Rejoignez notre mission</button>
           </div>
         </div>
+
+        {/* Formulaire d'inscription */}
+        {showForm && (
+          <div className={styles.formContainer}>
+            <form onSubmit={handleFormSubmit} className={styles.form}>
+              <h3>Inscrivez-vous à notre mission</h3>
+              <input
+                type="text"
+                name="prenom"
+                value={formData.prenom}
+                onChange={handleFormChange}
+                placeholder="Prénom"
+                required
+                className={styles.inputField}
+              />
+              <input
+                type="text"
+                name="nom"
+                value={formData.nom}
+                onChange={handleFormChange}
+                placeholder="Nom"
+                required
+                className={styles.inputField}
+              />
+              <input
+                type="tel"
+                name="telephone"
+                value={formData.telephone}
+                onChange={handleFormChange}
+                placeholder="Téléphone"
+                required
+                className={styles.inputField}
+              />
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleFormChange}
+                placeholder="Message (optionnel)"
+                className={styles.inputField}
+                rows="4"
+              />
+              <div className={styles.buttonGroup}>
+                <button type="submit" className={styles.submitButton}>Envoyer</button>
+                <button type="button" onClick={() => setShowForm(false)} className={styles.closeButton}>Annuler</button>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
     </section>
   );

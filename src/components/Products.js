@@ -45,6 +45,49 @@ const Products = () => {
       description: "Encouragez l'excellence et l'ambition. Un message motivant pour développer vos talents et devenir la meilleure version de vous-même.",
       price: 5000,
     },
+    {
+      id: 6,
+      image: require('../assets/images/product6.jpeg'),
+      name: 'Dinaa Jang',
+      description: "Embrassez l'importance de l'éducation et de la croissance personnelle. Un rappel inspirant de votre engagement à apprendre et à évoluer continuellement.",
+      price: 5000,
+    },
+    {
+      id: 7,
+      image: require('../assets/images/product7.jpeg'),
+      name: 'Saama Yaay Saama Rooyokaay',
+      description: "Honorez le lien précieux entre une mère et son enfant. Célébrez l'amour inconditionnel et le soutien inébranlable qu'une mère apporte tout au long de la vie.",
+      price: 5000,
+    },
+    {
+      id: 8,
+      image: require('../assets/images/fatou_blanc.jpeg'),
+      name: 'Fatou Bou Ndaw - Blanc Pureté',
+      description: "Incarnez la pureté et l'innocence de la jeunesse. Ce t-shirt blanc symbolise la page blanche de la vie, prête à être remplie d'expériences et de sagesse.",
+      price: 5000,
+    },
+    {
+      id: 9,
+      image: require('../assets/images/fatou_rose.jpeg'),
+      name: 'Fatou Bou Ndaw - Rose Tendresse',
+      description: "Exprimez la douceur et la tendresse de la jeune Fatou. Ce t-shirt rose évoque la délicatesse et la sensibilité, rappelant la beauté intérieure de chacun.",
+      price: 5000,
+    },
+    {
+      id: 10,
+      image: require('../assets/images/fatou_jaune.jpeg'),
+      name: 'Fatou Bou Ndaw - Jaune Soleil',
+      description: "Rayonnez de joie et d'optimisme comme le soleil. Ce t-shirt jaune incarne l'énergie positive et la vivacité d'esprit de la jeune Fatou.",
+      price: 5000,
+    },
+    {
+      id: 11,
+      image: require('../assets/images/fatou_bleu.jpeg'),
+      name: 'Fatou Bou Ndaw - Bleu Rêveur',
+      description: "Plongez dans l'infini des possibilités. Ce t-shirt bleu représente les rêves et les aspirations de la jeune Fatou, rappelant que le ciel est la seule limite.",
+      price: 5000,
+    }
+
   ];
 
   const handleAddToCart = (product) => {
@@ -89,7 +132,7 @@ const Products = () => {
                     e.stopPropagation();
                     handleAddToCart(product);
                   }}>
-                    Ajouter au panier
+                    <i className="fas fa-shopping-cart"></i> Ajouter au panier
                   </button>
                 </div>
               </div>
@@ -107,11 +150,15 @@ const Products = () => {
           <img src={selectedProduct.image} alt={selectedProduct.name} />
           <p>{selectedProduct.description}</p>
           <p>Prix: {selectedProduct.price} FCFA</p>
-          <button className={styles.btn} onClick={() => handleAddToCart(selectedProduct)}>Ajouter au panier</button>
+          <button className={styles.btn} onClick={() => handleAddToCart(selectedProduct)}>
+            <i className="fas fa-shopping-cart"></i> Ajouter au panier
+          </button>
         </div>
       )}
     </section>
   );
+  
+  
 };
 
 export default Products;
