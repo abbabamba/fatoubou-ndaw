@@ -12,81 +12,55 @@ const Products = () => {
   const products = [
     {
       id: 1,
-      image: require('../assets/images/product3_1.jpeg'),
+      image: require('../assets/images/gnuul.png'),
       name: 'Ñuul Mo Rafet',
       description: 'Célébrez la beauté naturelle de la peau noire. Un rappel puissant que votre couleur est magnifique, inspirant fierté et confiance.',
-      price: 5000, // prix en centimes
+      price: 10000, // prix en centimes
     },
     {
       id: 2,
       image: require('../assets/images/product2.jpeg'),
       name: 'Sama Yaay Sama Xarit',
       description: "Un hommage touchant à la maternité et à l'amitié. Célébrez le lien unique entre une mère et son enfant, source inépuisable d'amour et de soutien.",
-      price: 5000,
+      price: 10000,
     },
     {
       id: 3,
-      image: require('../assets/images/product1.jpeg'),
+      image: require('../assets/images/rafeet.png'),
       name: 'Dama Taaru',
       description: "Affirmez votre beauté intérieure et extérieure. Un message puissant pour embrasser votre authenticité et rayonner de confiance en soi.",
-      price: 5000,
+      price: 10000,
     },
     {
       id: 4,
-      image: require('../assets/images/product4.jpeg'),
+      image: require('../assets/images/joom.png'),
       name: 'Dama Am Jom',
       description: "Incarnez le courage et la détermination. Un rappel inspirant que vous avez la force intérieure pour surmonter tous les défis.",
-      price: 5000,
+      price: 10000,
     },
     {
       id: 5,
-      image: require('../assets/images/product5.jpeg'),
+      image: require('../assets/images/muus.png'),
       name: 'Dama Muus Baax Sawar',
       description: "Encouragez l'excellence et l'ambition. Un message motivant pour développer vos talents et devenir la meilleure version de vous-même.",
-      price: 5000,
+      price: 10000,
     },
     {
       id: 6,
       image: require('../assets/images/product6.jpeg'),
       name: 'Dinaa Jang',
       description: "Embrassez l'importance de l'éducation et de la croissance personnelle. Un rappel inspirant de votre engagement à apprendre et à évoluer continuellement.",
-      price: 5000,
+      price: 10000,
     },
     {
       id: 7,
       image: require('../assets/images/product7.jpeg'),
       name: 'Saama Yaay Saama Rooyokaay',
       description: "Honorez le lien précieux entre une mère et son enfant. Célébrez l'amour inconditionnel et le soutien inébranlable qu'une mère apporte tout au long de la vie.",
-      price: 5000,
-    },
-    {
-      id: 8,
-      image: require('../assets/images/fatou_blanc.jpeg'),
-      name: 'Fatou Bou Ndaw - Blanc Pureté',
-      description: "Incarnez la pureté et l'innocence de la jeunesse. Ce t-shirt blanc symbolise la page blanche de la vie, prête à être remplie d'expériences et de sagesse.",
-      price: 5000,
-    },
-    {
-      id: 9,
-      image: require('../assets/images/fatou_rose.jpeg'),
-      name: 'Fatou Bou Ndaw - Rose Tendresse',
-      description: "Exprimez la douceur et la tendresse de la jeune Fatou. Ce t-shirt rose évoque la délicatesse et la sensibilité, rappelant la beauté intérieure de chacun.",
-      price: 5000,
-    },
-    {
-      id: 10,
-      image: require('../assets/images/fatou_jaune.jpeg'),
-      name: 'Fatou Bou Ndaw - Jaune Soleil',
-      description: "Rayonnez de joie et d'optimisme comme le soleil. Ce t-shirt jaune incarne l'énergie positive et la vivacité d'esprit de la jeune Fatou.",
-      price: 5000,
-    },
-    {
-      id: 11,
-      image: require('../assets/images/fatou_bleu.jpeg'),
-      name: 'Fatou Bou Ndaw - Bleu Rêveur',
-      description: "Plongez dans l'infini des possibilités. Ce t-shirt bleu représente les rêves et les aspirations de la jeune Fatou, rappelant que le ciel est la seule limite.",
-      price: 5000,
+      price: 10000,
     }
+   
+    
 
   ];
 
