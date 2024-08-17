@@ -24,7 +24,7 @@ const OrderForm = ({ onClose, onOrderSuccess }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const { nom, adresse, telephone, message, paymentMethod } = formData;
-    const to = "fatouboundaw2024@gmail.com";
+    const to = "fatouboundawsn@gmail.com";
     const subject = "Nouvelle commande - Fatou Bou Ndaw";
     
     // Fonction pour formater le prix
