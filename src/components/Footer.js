@@ -23,7 +23,7 @@ const Footer = () => {
   }, []);
 
   const socialLinks = [
-    { icon: FaWhatsapp, url: "https://wa.me/+221767701221", name: "WhatsApp" },
+    { icon: FaWhatsapp, url: "https://wa.me/+221773046286", name: "WhatsApp" },
     { icon: FaInstagram, url: "https://www.instagram.com/fatouboundawsenegal2024?igsh=Mm5tZnlxZXpyNXVo&utm_source=qr", name: "Instagram" },
     { icon: FaFacebook, url: "https://www.facebook.com/share/1GH4eoSjKCymgmok/?mibextid=LQQJ4d", name: "Facebook" },
     { icon: FaTiktok, url: "https://www.tiktok.com", name: "TikTok" },
