@@ -44,7 +44,6 @@ const About = () => {
   Message: ${message ? message : 'Aucun message'}
     `;
   
-    // Afficher l'alerte de succès immédiatement
     MySwal.fire({
       title: 'Inscription réussie !',
       text: 'Merci de nous rejoindre.',
@@ -52,11 +51,9 @@ const About = () => {
       confirmButtonText: 'OK'
     });
   
-    // Réinitialiser le formulaire et fermer la fenêtre
     setShowForm(false);
     setFormData({ prenom: '', nom: '', telephone: '', message: '' });
   
-    // Ensuite, essayer d'envoyer l'email
     try {
       const response = await fetch('https://codingmailer.onrender.com/send-email', {
         method: 'POST',
@@ -65,7 +62,6 @@ const About = () => {
       });
   
       if (!response.ok) {
-        // Afficher une alerte d'erreur si l'API échoue
         MySwal.fire({
           title: 'Erreur',
           text: "Erreur lors de l'envoi du formulaire.",
@@ -75,7 +71,6 @@ const About = () => {
       }
     } catch (error) {
       console.error('Erreur lors de la requête :', error);
-      // Afficher une alerte d'erreur si la requête échoue
       MySwal.fire({
         title: 'Erreur',
         text: "Une erreur est survenue. Veuillez réessayer.",
@@ -85,7 +80,6 @@ const About = () => {
     }
   };
   
-
   return (
     <section id="about" className={`${styles.about} ${styles.visible}`}>
       <div className={styles.container}>
@@ -117,11 +111,13 @@ const About = () => {
                 </div>
               ))}
             </div>
+            <p className={styles.moreMessages}>
+              Et bien plus encore ! Ces messages ne sont que des exemples parmi notre vaste collection d'affirmations positives en wolof.
+            </p>
             <button onClick={() => setShowForm(true)} className={styles.btn}>Rejoignez notre mission</button>
           </div>
         </div>
 
-        {/* Formulaire d'inscription */}
         {showForm && (
           <div className={styles.formContainer}>
             <form onSubmit={handleFormSubmit} className={styles.form}>
