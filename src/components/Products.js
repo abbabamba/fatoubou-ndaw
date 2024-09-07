@@ -22,7 +22,7 @@ const Products = () => {
       image: require('../assets/images/product2.jpeg'),
       name: 'Sama Yaay Sama Xarit',
       description: "Un hommage touchant à la maternité et à l'amitié. Célébrez le lien unique entre une mère et son enfant, source inépuisable d'amour et de soutien.",
-      price: 10000,
+      price: 5000,
     },
     {
       id: 3,
