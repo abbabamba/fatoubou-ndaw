@@ -87,7 +87,7 @@ const Header = () => {
             </a>
           </li>
           <li className={styles.navItem}>
-            <Link to="/cart" className={styles.navLink}>
+            <Link to="/panier" className={styles.navLink}>
               Panier ({cart.length})
             </Link>
           </li>

@@ -122,12 +122,16 @@
 
 .productName {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.4rem; /* Maintenu comme demandé */
   font-weight: 600;
   color: #333;
   margin: 1rem 0 0.5rem;
   text-align: center;
+  letter-spacing: 0.05em; /* Espacement des lettres ajouté */
+  text-transform: uppercase; /* Transformation en majuscules */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.15); /* Ombre portée pour améliorer la lisibilité */
 }
+
 
 .productDescription {
   padding: 0 1.5rem;

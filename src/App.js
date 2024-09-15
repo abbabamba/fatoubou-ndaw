@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { CartProvider } from './contexts/CartContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -14,6 +15,14 @@ const AppContent = () => {
 
   return (
     <>
+      <Helmet>
+        <html lang="fr" />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="theme-color" content="#000000" />
+      </Helmet>
+
       {showHeaderAndFooter && <Header />}
       <main>
         <Routes>
@@ -24,7 +33,9 @@ const AppContent = () => {
               <About />
             </>
           } />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/produits" element={<Products />} />
+          <Route path="/a-propos" element={<About />} />
+          <Route path="/panier" element={<Cart />} />
         </Routes>
       </main>
       {showHeaderAndFooter && <Footer />}

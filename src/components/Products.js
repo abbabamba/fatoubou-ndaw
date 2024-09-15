@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { CartContext } from '../contexts/CartContext';
 import styles from './Products.module.css';
 import Swal from 'sweetalert2';
@@ -15,7 +16,7 @@ const Products = () => {
       image: require('../assets/images/gnuul.png'),
       name: 'Ñuul Mo Rafet',
       description: 'Célébrez la beauté naturelle de la peau noire. Un rappel puissant que votre couleur est magnifique, inspirant fierté et confiance.',
-      price: 10000, // prix en centimes
+      price: 10000,
     },
     {
       id: 2,
@@ -59,9 +60,6 @@ const Products = () => {
       description: "Honorez le lien précieux entre une mère et son enfant. Célébrez l'amour inconditionnel et le soutien inébranlable qu'une mère apporte tout au long de la vie.",
       price: 10000,
     }
-   
-    
-
   ];
 
   const handleAddToCart = (product) => {
@@ -83,7 +81,7 @@ const Products = () => {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        navigate('/cart'); // Redirection vers la page du panier
+        navigate('/panier'); // Redirection vers la page du panier
       }
     });
   };
@@ -93,46 +91,65 @@ const Products = () => {
   };
 
   return (
-    <section id="products" className={styles.products}>
-      <div className={styles.container}>
-        <h2 className={styles.heading}>Nos Produits</h2>
-        <div className={styles.productGrid}>
-          {products.map((product) => (
-            <div key={product.id} className={styles.product} onClick={() => handleProductClick(product)}>
-              <div className={styles.productImageContainer}>
-                <img src={product.image} alt={product.name} className={styles.productImage} />
-                <div className={styles.productOverlay}>
-                  <button className={styles.btn} onClick={(e) => {
-                    e.stopPropagation();
-                    handleAddToCart(product);
-                  }}>
-                    <i className="fas fa-shopping-cart"></i> Ajouter au panier
-                  </button>
+    <>
+      <Helmet>
+        <title>Produits Fatou Bou Ndaw - Vêtements inspirants pour enfants</title>
+        <meta name="description" content="Découvrez notre collection de vêtements inspirants pour enfants, avec des messages positifs en wolof. Des t-shirts qui célèbrent la beauté, la confiance et l'ambition." />
+        <link rel="canonical" href="https://www.fatou-bou-ndaw.com/produits" />
+        <meta property="og:title" content="Produits Fatou Bou Ndaw - Vêtements inspirants pour enfants" />
+        <meta property="og:description" content="Collection de vêtements avec des messages positifs en wolof pour renforcer l'estime de soi des enfants sénégalais." />
+        <meta property="og:image" content="https://www.fatou-bou-ndaw.com/images/products-preview.jpg" />
+        <meta property="og:type" content="product" />
+        <meta property="og:url" content="https://www.fatou-bou-ndaw.com/produits" />
+      </Helmet>
+
+      <section id="products" className={styles.products}>
+        <div className={styles.container}>
+          <h1 className={styles.heading}>Nos Produits</h1>
+          <div className={styles.productGrid} role="list">
+            {products.map((product) => (
+              <article key={product.id} className={styles.product} onClick={() => handleProductClick(product)} role="listitem">
+                <div className={styles.productImageContainer}>
+                  <img src={product.image} alt={`T-shirt ${product.name}`} className={styles.productImage} loading="lazy" />
+                  <div className={styles.productOverlay}>
+                    <button
+                      className={styles.btn}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAddToCart(product);
+                      }}
+                      aria-label={`Ajouter ${product.name} au panier`}
+                    >
+                      <i className="fas fa-shopping-cart" aria-hidden="true"></i> Ajouter au panier
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <h3 className={styles.productName}>{product.name}</h3>
-              <p className={styles.productDescription}>{product.description}</p>
-              <p className={styles.productPrice}>{product.price} FCFA</p>
-            </div>
-          ))}
+                <h2 className={styles.productName}>{product.name}</h2>
+                <p className={styles.productDescription}>{product.description}</p>
+                <p className={styles.productPrice}>{product.price} FCFA</p>
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
-      {selectedProduct && (
-        <div className={styles.productDetail}>
-          <button className={styles.closeBtn} onClick={() => setSelectedProduct(null)}>✖</button>
-          <h2>{selectedProduct.name}</h2>
-          <img src={selectedProduct.image} alt={selectedProduct.name} />
-          <p>{selectedProduct.description}</p>
-          <p>Prix: {selectedProduct.price} FCFA</p>
-          <button className={styles.btn} onClick={() => handleAddToCart(selectedProduct)}>
-            <i className="fas fa-shopping-cart"></i> Ajouter au panier
-          </button>
-        </div>
-      )}
-    </section>
+        {selectedProduct && (
+          <dialog open className={styles.productDetail}>
+            <button className={styles.closeBtn} onClick={() => setSelectedProduct(null)} aria-label="Fermer les détails du produit">✖</button>
+            <h2>{selectedProduct.name}</h2>
+            <img src={selectedProduct.image} alt={`T-shirt ${selectedProduct.name}`} />
+            <p>{selectedProduct.description}</p>
+            <p>Prix: {selectedProduct.price} FCFA</p>
+            <button
+              className={styles.btn}
+              onClick={() => handleAddToCart(selectedProduct)}
+              aria-label={`Ajouter ${selectedProduct.name} au panier`}
+            >
+              <i className="fas fa-shopping-cart" aria-hidden="true"></i> Ajouter au panier
+            </button>
+          </dialog>
+        )}
+      </section>
+    </>
   );
-  
-  
 };
 
 export default Products;

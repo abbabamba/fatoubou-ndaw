@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, Trash2, Plus, Minus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity, getCartTotal, clearCart } = useContext(CartContext);
@@ -28,96 +29,109 @@ const Cart = () => {
   };
 
   return (
-    <div className={styles.cartPageWrapper}>
-      <Header />
+    <>
+      <Helmet>
+        <title>Panier - Fatou Bou Ndaw</title>
+        <meta name="description" content="Consultez votre panier et passez votre commande de vêtements inspirants pour enfants avec des messages positifs en wolof." />
+        <link rel="canonical" href="https://www.fatou-bou-ndaw.com/panier" />
+        <meta property="og:title" content="Panier - Fatou Bou Ndaw" />
+        <meta property="og:description" content="Consultez votre panier et passez votre commande de vêtements inspirants pour enfants avec des messages positifs en wolof." />
+        <meta property="og:image" content="https://www.fatou-bou-ndaw.com/images/cart-preview.jpg" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.fatou-bou-ndaw.com/panier" />
+      </Helmet>
 
-      <main className={styles.cartMain}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0 }}
-          className={styles.cartContainer}
-        >
-          <h2 className={styles.cartTitle}>
-            <ShoppingCart className={styles.cartIcon} /> Votre Panier
-          </h2>
-          <AnimatePresence>
-            {cart.length === 0 ? (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                className={styles.emptyCart}
-              >
-                <p>Votre panier est vide.</p>
-                <Link to="/#products" className={styles.continueShoppingBtn}>
-                  Découvrez nos produits
-                </Link>
-              </motion.div>
-            ) : (
-              <div className={styles.cartContent}>
-                <div className={styles.cartItems}>
-                  {cart.map(item => (
-                    <motion.div
-                      key={item.id}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 20 }}
-                      className={styles.cartItem}
-                    >
-                      <img src={item.image} alt={item.name} className={styles.itemImage} />
-                      <div className={styles.itemInfo}>
-                        <h3 className={styles.itemName}>{item.name}</h3>
-                        <p className={styles.itemPrice}>{item.price} FCFA</p>
-                        <div className={styles.itemActions}>
-                          <button
-                            onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
-                            className={styles.quantityButton}
-                          >
-                            <Minus size={16} />
-                          </button>
-                          <span className={styles.itemQuantity}>{item.quantity}</span>
-                          <button
-                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className={styles.quantityButton}
-                          >
-                            <Plus size={16} />
-                          </button>
-                        </div>
-                      </div>
-                      <button onClick={() => removeFromCart(item.id)} className={styles.removeButton}>
-                        <Trash2 size={20} />
-                      </button>
-                    </motion.div>
-                  ))}
-                </div>
-                <div className={styles.cartSummary}>
-                  <div className={styles.totalPrice}>
-                    Total: <span>{getCartTotal()} FCFA</span>
-                  </div>
-                  <button onClick={handleOrder} className={styles.orderButton}>
-                    Passer la commande
-                  </button>
-                </div>
-              </div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      </main>
-      
-      <AnimatePresence>
-        {showOrderForm && (
+      <div className={styles.cartPageWrapper}>
+        <Header />
+
+        <main className={styles.cartMain}>
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className={styles.orderFormOverlay}
+            className={styles.cartContainer}
           >
-            <OrderForm onClose={handleCloseOrderForm} onOrderSuccess={handleOrderSuccess} />
+            <h2 className={styles.cartTitle}>
+              <ShoppingCart className={styles.cartIcon} /> Votre Panier
+            </h2>
+            <AnimatePresence>
+              {cart.length === 0 ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className={styles.emptyCart}
+                >
+                  <p>Votre panier est vide.</p>
+                  <Link to="/#products" className={styles.continueShoppingBtn}>
+                    Découvrez nos produits
+                  </Link>
+                </motion.div>
+              ) : (
+                <div className={styles.cartContent}>
+                  <div className={styles.cartItems}>
+                    {cart.map(item => (
+                      <motion.div
+                        key={item.id}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 20 }}
+                        className={styles.cartItem}
+                      >
+                        <img src={item.image} alt={`T-shirt ${item.name}`} className={styles.itemImage} loading="lazy" />
+                        <div className={styles.itemInfo}>
+                          <h3 className={styles.itemName}>{item.name}</h3>
+                          <p className={styles.itemPrice}>{item.price} FCFA</p>
+                          <div className={styles.itemActions}>
+                            <button
+                              onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                              className={styles.quantityButton}
+                            >
+                              <Minus size={16} />
+                            </button>
+                            <span className={styles.itemQuantity}>{item.quantity}</span>
+                            <button
+                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                              className={styles.quantityButton}
+                            >
+                              <Plus size={16} />
+                            </button>
+                          </div>
+                        </div>
+                        <button onClick={() => removeFromCart(item.id)} className={styles.removeButton}>
+                          <Trash2 size={20} />
+                        </button>
+                      </motion.div>
+                    ))}
+                  </div>
+                  <div className={styles.cartSummary}>
+                    <div className={styles.totalPrice}>
+                      Total: <span>{getCartTotal()} FCFA</span>
+                    </div>
+                    <button onClick={handleOrder} className={styles.orderButton}>
+                      Passer la commande
+                    </button>
+                  </div>
+                </div>
+              )}
+            </AnimatePresence>
           </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+        </main>
+
+        <AnimatePresence>
+          {showOrderForm && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className={styles.orderFormOverlay}
+            >
+              <OrderForm onClose={handleCloseOrderForm} onOrderSuccess={handleOrderSuccess} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </>
   );
 };
 
